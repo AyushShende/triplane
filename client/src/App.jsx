@@ -1,5 +1,10 @@
 import './App.css';
+import { HomePage } from './pages';
 
 export default function App() {
-  return <main className="text-red-500">Hello Vite</main>;
+  return (
+    <>
+      <HomePage />
+    </>
+  );
 }
