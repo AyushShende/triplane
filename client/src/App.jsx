@@ -1,10 +1,12 @@
 import './App.css';
-import { HomePage } from './pages';
+import { HomePage, LoginPage, RegisterPage } from './pages';
 
 export default function App() {
   return (
     <>
-      <HomePage />
+      {/* <HomePage /> */}
+      {/* <LoginPage /> */}
+      <RegisterPage />
     </>
   );
 }
