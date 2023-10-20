@@ -7,6 +7,7 @@ import User from '../models/User.js';
 // Protect routes and allow access to only authenticated users.
 export const protect = catchAsync(async (req, res, next) => {
   //1. Getting token and check if it's there
+  console.log(req.cookies);
   const token = req.cookies.access_token;
 
   if (!token) {

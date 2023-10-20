@@ -1,8 +1,9 @@
 import cardImg from '../assets/tours/tour-1-cover.jpg';
 import { FiCalendar, FiFlag, FiMapPin, FiStar, FiUser } from 'react-icons/fi';
 import Button from './Button';
+import { Link } from 'react-router-dom';
 
-export default function TourCard() {
+export default function TourCard({ tour }) {
   return (
     <div className="grid md:grid-cols-8 mb-10 md:mb-16 max-w-6xl mx-auto">
       {/* Card Image */}
@@ -13,7 +14,7 @@ export default function TourCard() {
       {/* Card Text */}
       <div className="bg-emerald-50 md:col-span-3 p-6 box-border">
         <h3 className="font-bold text-3xl capitalize mb-4 text-gray-700">
-          The Kerala Coast
+          {tour?.name}
         </h3>
         <p className="font-bold text-lg capitalize mb-1">Easy 10-days tour</p>
         <p className="mb-4">
@@ -53,8 +54,9 @@ export default function TourCard() {
         <div className="mb-8">
           <div className="font-extrabold text-4xl mb-1">₹ 2000</div>/ per person
         </div>
-
-        <Button>Details</Button>
+        <Link to={`/tours/${tour?._id}`}>
+          <Button>Details</Button>
+        </Link>
       </div>
     </div>
   );

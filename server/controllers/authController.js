@@ -19,6 +19,8 @@ const createSendToken = (user, statusCode, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
+    sameSite: 'None',
+    secure: true,
   };
 
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
@@ -44,10 +46,10 @@ export const signup = catchAsync(async (req, res, next) => {
     passwordConfirm,
   });
 
-  await new Email(
-    newUser,
-    `${req.protocol}://${req.get('host')}/me`
-  ).sendWelcome();
+  // await new Email(
+  //   newUser,
+  //   `${req.protocol}://${req.get('host')}/me`
+  // ).sendWelcome();
 
   createSendToken(newUser, 201, res);
 });
@@ -174,9 +176,11 @@ export const updatePassword = catchAsync(async (req, res, next) => {
 });
 
 export const logout = (req, res) => {
-  res.cookie('access_token', 'loggedout', {
+  res.cookie('access_token', '', {
     expires: new Date(Date.now()),
     httpOnly: true,
+    sameSite: 'None',
+    secure: true,
   });
 
   res.status(200).json({ status: 'success' });

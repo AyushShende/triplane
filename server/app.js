@@ -11,8 +11,16 @@ import mongoSanitize from 'express-mongo-sanitize';
 import xss from 'xss-clean';
 import hpp from 'hpp';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 //      MIDDLEWARES
+
+app.use(
+  cors({
+    credentials: true,
+    origin: 'http://127.0.0.1:5173',
+  })
+);
 
 app.use(express.static('public'));
 
